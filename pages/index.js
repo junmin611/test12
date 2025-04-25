@@ -1,7 +1,4 @@
-
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
 import jsPDF from 'jspdf';
 
 const questions = [
@@ -86,9 +83,9 @@ export default function Home() {
           <>
             <h2 className="text-3xl md:text-5xl font-bold mb-4">AI가 진단하는 당신의 창업 아이디어</h2>
             <p className="text-lg md:text-xl mb-6">혁신적인 인공지능 기술로 창업 아이디어를 분석하고, 단계별로 필요한 정보를 제공해 드립니다.</p>
-            <Button className="bg-white text-blue-600 font-semibold px-6 py-3 hover:bg-blue-100 mt-4" onClick={() => setStep(0)}>
+            <button className="bg-white text-blue-600 font-semibold px-6 py-3 hover:bg-blue-100 mt-4" onClick={() => setStep(0)}>
               진단 시작하기
-            </Button>
+            </button>
           </>
         ) : result ? (
           <div className="bg-white text-black p-6 rounded-xl max-w-2xl w-full">
@@ -99,27 +96,27 @@ export default function Home() {
             <p><strong>리스크:</strong> {result.리스크.join(', ')}</p>
             <p><strong>실행 전략:</strong> {result.실행_전략}</p>
             <p><strong>추천 등급:</strong> {result.추천_등급}</p>
-            <Button onClick={downloadPDF} className="mt-4 bg-blue-600 text-white px-6 py-2 rounded">PDF 저장</Button>
+            <button onClick={downloadPDF} className="mt-4 bg-blue-600 text-white px-6 py-2 rounded">PDF 저장</button>
           </div>
         ) : (
           <div className="w-full max-w-2xl">
             <h2 className="text-xl font-bold mb-4">Q{step + 1}. {questions[step].question}</h2>
             <p className="text-sm text-left mb-1">💡 <strong>질문 의도:</strong> {questions[step].intent}</p>
             <p className="text-sm text-left italic text-gray-200 mb-2">예시: {questions[step].example}</p>
-            <Textarea
-              className="w-full mb-4 text-black"
+            <textarea
+              className="w-full mb-4 text-black p-2 rounded"
               rows={5}
               value={answers[step]}
               onChange={handleChange}
             />
             {step < questions.length - 1 ? (
-              <Button onClick={handleNext} className="bg-white text-blue-600 px-6 py-2 font-semibold">
+              <button onClick={handleNext} className="bg-white text-blue-600 px-6 py-2 font-semibold">
                 다음 질문
-              </Button>
+              </button>
             ) : (
-              <Button onClick={handleSubmit} className="bg-white text-blue-600 px-6 py-2 font-semibold" disabled={loading}>
+              <button onClick={handleSubmit} className="bg-white text-blue-600 px-6 py-2 font-semibold" disabled={loading}>
                 {loading ? '분석 중...' : '제출하기'}
-              </Button>
+              </button>
             )}
           </div>
         )}
